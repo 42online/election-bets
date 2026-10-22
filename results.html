@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>לוח התוצאות – הימורי מדגם 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Secular+One&family=Assistant:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--paper:#F7F8FA;--slip:#FFFFFF;--ink:#16181D;--muted:#5D6470;--envelope:#2E5FA8;--envelope-soft:#E3ECF8;--line:#D5DAE2;--ok:#1E7A4C;box-sizing:border-box;color-scheme:light}
+@media (prefers-color-scheme:dark){:root{--paper:#12151B;--slip:#1B2029;--ink:#EEF1F5;--muted:#9AA3B2;--envelope:#7FA8E8;--envelope-soft:#1F2C42;--line:#2E3542;--ok:#5CC48D;color-scheme:dark}}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:70px}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:"Assistant",Arial,"Segoe UI",sans-serif;font-size:17px;line-height:1.55}
+.wrap{max-width:680px;margin:0 auto;padding:0 18px 120px}
+header.hero{background:var(--envelope);color:#fff;padding:44px 18px 56px;text-align:center}
+.hero h1{font-family:"Secular One","Assistant",Arial,sans-serif;font-weight:400;font-size:clamp(44px,12vw,84px);line-height:1;margin:0}
+.hero p{margin:14px auto 0;max-width:30em;font-size:18px;opacity:.92}
+.hero.small{padding:32px 18px 36px}
+.hero.small h1{font-size:clamp(38px,9vw,60px)}
+.name-slip{background:var(--slip);border:1px solid var(--line);border-radius:6px;margin:-30px auto 28px;padding:20px;box-shadow:0 8px 24px rgba(20,30,60,.10)}
+.name-slip label{display:block;font-weight:700;margin-bottom:8px}
+.name-slip input{width:100%;font:inherit;font-size:20px;padding:12px 14px;border:2px solid var(--line);border-radius:4px;background:var(--paper);color:var(--ink)}
+.name-slip input:focus{outline:none;border-color:var(--envelope)}
+.progress{position:sticky;top:0;z-index:5;background:var(--paper);padding:10px 0;border-bottom:1px solid var(--line);margin-bottom:16px;display:flex;align-items:center;gap:12px;font-weight:600;color:var(--muted);font-size:15px}
+.bar{flex:1;height:6px;background:var(--line);border-radius:3px;overflow:hidden}
+.bar span{display:block;height:100%;width:0;background:var(--envelope);transition:width .25s}
+h2.part{font-family:"Secular One","Assistant",sans-serif;font-weight:400;font-size:30px;margin:36px 0 4px}
+.part-note{color:var(--muted);margin:0 0 16px}
+.q{background:var(--slip);border:1px solid var(--line);border-radius:6px;padding:18px 18px 16px;margin:0 0 14px;transition:border-color .2s}
+.q.done{border-color:var(--envelope)}
+.q.missing{border-color:#C8413A}
+.q h3{margin:0;font-size:19px;line-height:1.4;font-weight:700}
+.q .note{margin:6px 0 0;color:var(--muted);font-size:15px}
+.opts{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.opts button,.opts span.opt{font:inherit;font-weight:600;font-size:17px;padding:9px 16px;min-width:64px;border:2px solid var(--line);border-radius:4px;background:transparent;color:var(--ink)}
+.opts button{cursor:pointer}
+.opts button:hover{border-color:var(--envelope)}
+.opts button:focus-visible{outline:3px solid var(--envelope);outline-offset:2px}
+.opts [aria-pressed="true"],.opts .right{background:var(--envelope);border-color:var(--envelope);color:var(--slip)}
+.opts small{font-weight:400;opacity:.75}
+.submit-area{margin-top:28px;text-align:center}
+.submit{font-family:"Secular One","Assistant",sans-serif;font-size:24px;padding:14px 40px;background:var(--ink);color:var(--paper);border:0;border-radius:4px;cursor:pointer}
+.submit:disabled{opacity:.6;cursor:default}
+.submit:focus-visible{outline:3px solid var(--envelope);outline-offset:3px}
+.msg{margin-top:14px;font-weight:600;min-height:1.5em}
+.msg.err{color:#C8413A}
+.msg.ok{color:var(--ok)}
+.done-card{background:var(--envelope-soft);border:2px solid var(--envelope);border-radius:6px;padding:22px;margin-top:24px}
+.done-card h3{font-family:"Secular One","Assistant",sans-serif;font-weight:400;font-size:26px;margin:0 0 6px}
+.board{list-style:none;padding:0;margin:0}
+.board li{display:grid;grid-template-columns:2.2em minmax(5em,9em) 1fr auto;gap:12px;align-items:center;background:var(--slip);border:1px solid var(--line);border-radius:6px;padding:10px 14px;margin-bottom:8px}
+.board li.lead{border:2px solid var(--envelope)}
+.board li.empty{display:block;color:var(--muted)}
+.rk{font-family:"Secular One","Assistant",sans-serif;font-size:22px;color:var(--muted)}
+.lead .rk{color:var(--envelope)}
+.nm{font-weight:700;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.sbar{height:8px;background:var(--line);border-radius:4px;overflow:hidden}
+.sbar i{display:block;height:100%;background:var(--envelope);transition:width .3s}
+.sc{font-family:"Secular One","Assistant",sans-serif;font-size:20px;min-width:3em;text-align:left}
+.status{color:var(--muted);font-size:14px;margin-top:6px}
+[hidden]{display:none!important}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<header class="hero small">
+  <h1>לוח התוצאות</h1>
+  <p>הטבלה מתעדכנת מעצמה במהלך הערב.</p>
+</header>
+<main class="wrap">
+  <h2 class="part">הטבלה</h2>
+  <p class="part-note" id="resolved">טוען…</p>
+  <ol class="board" id="board"></ol>
+  <p class="status" id="status"></p>
+  <h2 class="part">השאלות</h2>
+  <p class="part-note">התשובה הנכונה מסומנת בכחול. המספר ליד כל תשובה הוא כמה משתתפים ניחשו אותה.</p>
+  <div id="questions"></div>
+</main>
+<script>
+const FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLSeLm-gddKFyxhq3Qc6CN3LS4DB4V2OQwzd-zL-2QUhmKH2iVw/formResponse";
+const NAME_ENTRY = "entry.1334412400";
+const SHEET_ID = "1RJNS546xWlWuSTTebz1pxkSDXs29JYc9jyGjqgLUsHY";
+const DATA_GID = "689895731";
+const KEY_GID = "1520373364";
+const QS = [
+  {e:784427882, t:"האם במדגם כלשהו יהיה לאחד הגושים 61?", n:"וינטר נחשב גוש ימין, למרות מה שביבי אמר", o:["כן","לא"]},
+  {e:1544510882, t:"איזה גוש יקבל יותר מנדטים במדגם של 12?", o:["ימין","שמאל","תיקו"]},
+  {e:403190113, t:"האם וינטר עובר במדגם כלשהו?", o:["כן","לא"]},
+  {e:739464245, t:"האם הנדל/זליכה עוברים במדגם כלשהו?", o:["כן","לא"]},
+  {e:1439004292, t:"כמה מנדטים בנט מקבל במדגם של 12?", o:["0-10","11-12","13+"]},
+  {e:841398233, t:"בסקר האחרון של 14 הליכוד קיבלו 29. כמה הם יקבלו במדגם?", o:["0-24","25-27","28-29","30+"]},
+  {e:152578877, t:"איזה ראש מפלגה ינאם ראשון?", o:["בנט","ביבי","אייזנקוט","סמוטריץ'","בן גביר","יאיר גולן"]},
+  {e:14311346, t:"נתניהו יעלה לנאום לפני או אחרי 1:00?", o:["לפני","אחרי","לא ינאם"]},
+  {e:1541717563, t:"אחוז ההצבעה הסופי יהיה…", o:["יותר גבוה מפעם שעברה","יותר נמוך מפעם שעברה"]},
+  {e:1627692703, t:"האם במהלך הערב ראש מפלגה כלשהו יכריז על ניצחון?", n:"המילה „ניצחון” חייבת להיאמר", o:["כן","לא"]},
+  {e:1337562928, t:"במטה של הציונות הדתית יהיו…", o:["בלונים","קונפטי","גם וגם","לא זה ולא זה"]},
+  {e:1914875240, t:"כמה סמוטריץ׳ מקבל ב־12?", o:["לא עובר","4-5","6","7+"]},
+  {e:1129570437, t:"מי מקבל יותר במדגם של 12?", o:["בן גביר","ש\"ס","תיקו"]},
+  {e:2083267577, t:"מה יהיה הפער בין גוש הימין של 14 לגוש הימין של 12?", o:["0-4","5-8","9+"]},
+  {e:1416936996, t:"מי יקבל יותר במדגם של 12, ביבי או אייזנקוט?", o:["ביבי","אייזנקוט","תיקו"]},
+  {e:462699298, t:"האם מפלגה כלשהי מהבאות לא תעבור?", n:"הציונות הדתית, בנט, ליברמן, רע״מ, בן גביר, ש״ס", o:["כן","לא"]},
+  {e:435380632, t:"האם תהיה „הפתעת הבחירות”, ומפלגה כלשהי תקבל הרבה יותר ממה שנתנו לה הסקרים של אותו ערוץ?", n:"הפתעה = עלייה של 40% לפחות", o:["כן","לא"]},
+  {e:929970103, t:"האם חנוך דאום ישתתף בשידורים של 12 במהלך הערב?", o:["כן","לא"]},
+  {e:1747819989, t:"העדכון הראשון של 12 יהיה לטובת…", o:["ימין","שמאל","עדכון בתוך הגושים"]},
+  {e:266464563, t:"איזה ערוץ ייתן הכי הרבה מנדטים לגוש הימין?", n:"שימו לב: בבחירות האחרונות ערוץ 14 לא נתן במדגם לימין יותר מהערוצים האחרים", o:["11","12","13","14"]},
+  {e:107573084, t:"בסקר האחרון של 12 הליכוד קיבלו 20. כמה הם יקבלו במדגם?", o:["מתחת ל-20","20-22","23-24","25+"]}
+];
+const $=id=>document.getElementById(id);
+let people=[], correct={};
+function gviz(gid){return "https://docs.google.com/spreadsheets/d/"+SHEET_ID+"/gviz/tq?tqx=out:csv&headers=0&gid="+gid+"&t="+Date.now();}
+function parseCSV(text){
+  const rows=[];let row=[],cell="",q=false;
+  for(let i=0;i<text.length;i++){
+    const c=text[i];
+    if(q){ if(c==='"'){ if(text[i+1]==='"'){cell+='"';i++;} else q=false; } else cell+=c; }
+    else if(c==='"') q=true;
+    else if(c===','){row.push(cell);cell="";}
+    else if(c==='\n'){row.push(cell);rows.push(row);row=[];cell="";}
+    else if(c!=='\r') cell+=c;
+  }
+  if(cell!==""||row.length){row.push(cell);rows.push(row);}
+  return rows;
+}
+const norm=s=>String(s).trim().replace(/[–—]/g,"-");
+async function load(){
+  try{
+    const [d,k]=await Promise.all([fetch(gviz(DATA_GID)).then(r=>r.text()),fetch(gviz(KEY_GID)).then(r=>r.text())]);
+    const byName=new Map();
+    parseCSV(d).forEach(r=>{
+      const line=(r[0]||"").trim(); if(!line) return;
+      const parts=line.split("|"); if(parts.length<QS.length+1) return;
+      const name=parts[0].trim(); if(!name) return;
+      byName.set(name.toLowerCase(),{name,a:parts.slice(1,QS.length+1).map(norm)});
+    });
+    people=[...byName.values()];
+    correct={};
+    const krows=parseCSV(k);
+    let start=krows.findIndex(r=>norm(r[0]||"")==="שאלה"); start = start===-1?0:start+1;
+    QS.forEach((q,i)=>{
+      const r=krows[start+i]; if(!r) return;
+      const v=parseInt(norm(r[1]||""),10);
+      if(v>=1&&v<=q.o.length) correct[i]=q.o[v-1];
+    });
+    render();
+    $("status").textContent="עודכן ב־"+new Date().toLocaleTimeString("he-IL",{hour:"2-digit",minute:"2-digit"});
+  }catch(e){ $("status").textContent="לא הצלחתי לטעון את הנתונים. מנסה שוב בעוד רגע…"; }
+}
+function render(){
+  const ids=QS.map((q,i)=>i).filter(i=>correct[i]!==undefined);
+  $("resolved").textContent=(people.length?people.length+" משתתפים. ":"")+(ids.length?"הוכרעו "+ids.length+" מתוך "+QS.length+" שאלות.":"עוד לא הוכרעה אף שאלה.");
+  const rows=people.map(p=>({name:p.name,s:ids.filter(i=>p.a[i]===correct[i]).length})).sort((a,b)=>b.s-a.s||a.name.localeCompare(b.name,"he"));
+  const b=$("board");b.textContent="";
+  if(!rows.length){const li=document.createElement("li");li.className="empty";li.textContent="עוד אין משתתפים.";b.appendChild(li);}
+  else{
+    const top=rows[0].s;let rank=0,prev=null;
+    rows.forEach((r,i)=>{
+      if(r.s!==prev){rank=i+1;prev=r.s;}
+      const li=document.createElement("li");if(ids.length&&r.s===top)li.className="lead";
+      const rk=document.createElement("span");rk.className="rk";rk.textContent=rank;
+      const nm=document.createElement("span");nm.className="nm";nm.textContent=r.name;
+      const bar=document.createElement("span");bar.className="sbar";const f=document.createElement("i");f.style.width=(ids.length?r.s/ids.length*100:0)+"%";bar.appendChild(f);
+      const sc=document.createElement("span");sc.className="sc";sc.textContent=r.s+(ids.length?"/"+ids.length:"");
+      li.append(rk,nm,bar,sc);b.appendChild(li);
+    });
+  }
+  const root=$("questions");root.textContent="";
+  QS.forEach((q,i)=>{
+    const card=document.createElement("div");card.className="q"+(correct[i]!==undefined?" done":"");
+    const h3=document.createElement("h3");h3.textContent=(i+1)+". "+q.t;card.appendChild(h3);
+    const opts=document.createElement("div");opts.className="opts";
+    q.o.forEach(o=>{
+      const s=document.createElement("span");s.className="opt"+(correct[i]===o?" right":"");
+      s.textContent=o;const c=document.createElement("small");c.textContent=" "+people.filter(p=>p.a[i]===norm(o)).length;s.appendChild(c);
+      opts.appendChild(s);
+    });
+    card.appendChild(opts);root.appendChild(card);
+  });
+}
+render();load();setInterval(load,30000);
+</script>
+</body>
+</html>
