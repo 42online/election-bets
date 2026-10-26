@@ -6,76 +6,78 @@
 <title>לוח התוצאות – הימורי מדגם 2026</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Secular+One&family=Assistant:wght@400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Secular+One&family=Assistant:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
-:root{--paper:#F7F8FA;--slip:#FFFFFF;--ink:#16181D;--muted:#5D6470;--envelope:#2E5FA8;--envelope-soft:#E3ECF8;--line:#D5DAE2;--ok:#1E7A4C;box-sizing:border-box;color-scheme:light}
-@media (prefers-color-scheme:dark){:root{--paper:#12151B;--slip:#1B2029;--ink:#EEF1F5;--muted:#9AA3B2;--envelope:#7FA8E8;--envelope-soft:#1F2C42;--line:#2E3542;--ok:#5CC48D;color-scheme:dark}}
-*,*::before,*::after{box-sizing:inherit}
-html{scroll-padding-top:70px}
-body{margin:0;background:var(--paper);color:var(--ink);font-family:"Assistant",Arial,"Segoe UI",sans-serif;font-size:17px;line-height:1.55}
-.wrap{max-width:680px;margin:0 auto;padding:0 18px 120px}
-header.hero{background:var(--envelope);color:#fff;padding:44px 18px 56px;text-align:center}
-.hero h1{font-family:"Secular One","Assistant",Arial,sans-serif;font-weight:400;font-size:clamp(44px,12vw,84px);line-height:1;margin:0}
-.hero p{margin:14px auto 0;max-width:30em;font-size:18px;opacity:.92}
-.hero.small{padding:32px 18px 36px}
-.hero.small h1{font-size:clamp(38px,9vw,60px)}
-.name-slip{background:var(--slip);border:1px solid var(--line);border-radius:6px;margin:-30px auto 28px;padding:20px;box-shadow:0 8px 24px rgba(20,30,60,.10)}
-.name-slip label{display:block;font-weight:700;margin-bottom:8px}
-.name-slip input{width:100%;font:inherit;font-size:20px;padding:12px 14px;border:2px solid var(--line);border-radius:4px;background:var(--paper);color:var(--ink)}
-.name-slip input:focus{outline:none;border-color:var(--envelope)}
-.progress{position:sticky;top:0;z-index:5;background:var(--paper);padding:10px 0;border-bottom:1px solid var(--line);margin-bottom:16px;display:flex;align-items:center;gap:12px;font-weight:600;color:var(--muted);font-size:15px}
-.bar{flex:1;height:6px;background:var(--line);border-radius:3px;overflow:hidden}
-.bar span{display:block;height:100%;width:0;background:var(--envelope);transition:width .25s}
-h2.part{font-family:"Secular One","Assistant",sans-serif;font-weight:400;font-size:30px;margin:36px 0 4px}
-.part-note{color:var(--muted);margin:0 0 16px}
-.q{background:var(--slip);border:1px solid var(--line);border-radius:6px;padding:18px 18px 16px;margin:0 0 14px;transition:border-color .2s}
-.q.done{border-color:var(--envelope)}
-.q.missing{border-color:#C8413A}
-.q h3{margin:0;font-size:19px;line-height:1.4;font-weight:700}
-.q .note{margin:6px 0 0;color:var(--muted);font-size:15px}
-.opts{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
-.opts button,.opts span.opt{font:inherit;font-weight:600;font-size:17px;padding:9px 16px;min-width:64px;border:2px solid var(--line);border-radius:4px;background:transparent;color:var(--ink)}
-.opts button{cursor:pointer}
-.opts button:hover{border-color:var(--envelope)}
-.opts button:focus-visible{outline:3px solid var(--envelope);outline-offset:2px}
-.opts [aria-pressed="true"],.opts .right{background:var(--envelope);border-color:var(--envelope);color:var(--slip)}
-.opts small{font-weight:400;opacity:.75}
-.submit-area{margin-top:28px;text-align:center}
-.submit{font-family:"Secular One","Assistant",sans-serif;font-size:24px;padding:14px 40px;background:var(--ink);color:var(--paper);border:0;border-radius:4px;cursor:pointer}
-.submit:disabled{opacity:.6;cursor:default}
-.submit:focus-visible{outline:3px solid var(--envelope);outline-offset:3px}
-.msg{margin-top:14px;font-weight:600;min-height:1.5em}
-.msg.err{color:#C8413A}
-.msg.ok{color:var(--ok)}
-.done-card{background:var(--envelope-soft);border:2px solid var(--envelope);border-radius:6px;padding:22px;margin-top:24px}
-.done-card h3{font-family:"Secular One","Assistant",sans-serif;font-weight:400;font-size:26px;margin:0 0 6px}
-.board{list-style:none;padding:0;margin:0}
-.board li{display:grid;grid-template-columns:2.2em minmax(5em,9em) 1fr auto;gap:12px;align-items:center;background:var(--slip);border:1px solid var(--line);border-radius:6px;padding:10px 14px;margin-bottom:8px}
-.board li.lead{border:2px solid var(--envelope)}
-.board li.empty{display:block;color:var(--muted)}
-.rk{font-family:"Secular One","Assistant",sans-serif;font-size:22px;color:var(--muted)}
-.lead .rk{color:var(--envelope)}
-.nm{font-weight:700;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.sbar{height:8px;background:var(--line);border-radius:4px;overflow:hidden}
-.sbar i{display:block;height:100%;background:var(--envelope);transition:width .3s}
-.sc{font-family:"Secular One","Assistant",sans-serif;font-size:20px;min-width:3em;text-align:left}
-.status{color:var(--muted);font-size:14px;margin-top:6px}
+:root{--night:#0B1230;--blue:#2F6BFF;--red:#F0313E;--slip:#FFFFFF;--ink:#111421;--muted:#8C93B3;--line:#E3E6EF;--gold:#FFD43B}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;font-family:"Assistant",Arial,sans-serif;color:#fff;background:var(--night);
+  background-image:radial-gradient(60vw 60vw at 110% 10%,rgba(47,107,255,.45),transparent 60%),radial-gradient(60vw 60vw at -10% 90%,rgba(240,49,62,.40),transparent 60%),repeating-linear-gradient(115deg,rgba(255,255,255,.025) 0 2px,transparent 2px 22px);
+  background-attachment:fixed;min-height:100vh}
+.ticker{display:flex;height:38px;background:#fff;color:var(--ink);font-weight:800;overflow:hidden}
+.live{background:var(--red);color:#fff;display:flex;align-items:center;gap:8px;padding:0 14px;font-family:"Secular One",sans-serif}
+.live i{width:9px;height:9px;border-radius:50%;background:#fff;animation:pulse 1.2s infinite}
+@keyframes pulse{50%{opacity:.25}}
+.track{flex:1;overflow:hidden;position:relative;display:flex;align-items:center}
+.track span{white-space:nowrap;position:absolute;animation:tick 38s linear infinite;font-size:15px}
+@keyframes tick{from{transform:translateX(-100%)}to{transform:translateX(100vw)}}
+main{max-width:680px;margin:0 auto;padding:22px 18px 60px}
+h1{font-family:"Secular One",sans-serif;font-weight:400;font-size:clamp(46px,12vw,80px);line-height:1;margin:14px 0 4px;text-align:center;
+  background:linear-gradient(90deg,var(--red) 0%,#fff 48%,#fff 52%,var(--blue) 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.sub{text-align:center;color:#D6DAF0;margin:0 0 22px}
+.status{text-align:center;color:var(--muted);font-size:14px;margin:10px 0 0}
+h2{font-family:"Secular One",sans-serif;font-weight:400;font-size:30px;margin:34px 0 12px}
+.board{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.board li{display:grid;grid-template-columns:2.4em minmax(5em,10em) 1fr auto;gap:12px;align-items:center;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);border-radius:10px;padding:12px 14px}
+.board li.lead{background:#fff;color:var(--ink);border:0;box-shadow:0 14px 34px rgba(0,0,0,.35)}
+.board li.empty{display:block;color:#D6DAF0}
+.rk{font-family:"Secular One",sans-serif;font-size:24px;color:var(--muted)}
+.lead .rk{color:var(--red)}
+.nm{font-weight:800;font-size:18px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.sbar{height:10px;background:rgba(255,255,255,.15);border-radius:5px;overflow:hidden}
+.lead .sbar{background:var(--line)}
+.sbar i{display:block;height:100%;background:linear-gradient(90deg,var(--red),var(--blue));transition:width .4s}
+.sc{font-family:"Secular One",sans-serif;font-size:22px;min-width:3em;text-align:left}
+.crown{font-size:13px;font-weight:800;background:var(--gold);color:var(--ink);border-radius:999px;padding:1px 8px;margin-inline-start:6px;vertical-align:middle}
+.q{background:var(--slip);color:var(--ink);border-radius:8px;padding:18px;margin:0 0 12px;border-top:6px solid var(--blue)}
+.q:nth-child(even){border-top-color:var(--red)}
+.q.done{box-shadow:0 0 0 3px var(--gold)}
+.q h3{margin:0;font-size:18px;line-height:1.4;font-weight:800}
+.opts{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.opt{font:inherit;font-weight:800;font-size:16px;padding:8px 14px;border-radius:6px;border:2px solid var(--line);background:#F6F7FB;color:var(--ink);display:inline-flex;gap:8px;align-items:center}
+button.opt{cursor:pointer}
+button.opt:hover{border-color:var(--blue)}
+.opt small{font-weight:600;color:#6B7290}
+.opt.right{background:var(--ink);border-color:var(--ink);color:#fff}
+.opt.right small{color:#C9CDE0}
+.opt.right::before{content:"✓"}
+.opt.busy{opacity:.5}
+.admin{background:#fff;color:var(--ink);border-radius:10px;padding:18px;margin:6px 0 10px}
+.admin b{display:block;font-size:18px;margin-bottom:8px}
+.admin input{font:inherit;font-size:18px;padding:10px 12px;border:2px solid var(--line);border-radius:6px;width:min(100%,260px)}
+.admin button{font-family:"Secular One",sans-serif;font-size:18px;padding:10px 18px;border:0;border-radius:6px;color:#fff;background:linear-gradient(90deg,var(--red),var(--blue));cursor:pointer;margin-inline-start:8px}
+.admin .err{color:#C8413A;font-weight:700;margin-top:8px;min-height:1.4em}
+.banner{background:var(--gold);color:var(--ink);font-weight:800;border-radius:8px;padding:10px 14px;text-align:center;margin:6px 0 10px}
+button:focus-visible,input:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
 [hidden]{display:none!important}
-@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.track span{position:static;padding:0 12px}}
 </style>
 </head>
 <body>
-<header class="hero small">
+<div class="ticker" aria-hidden="true"><div class="live"><i></i>שידור חי</div><div class="track"><span>מבזק: התוצאות זורמות • הטבלה מתעדכנת בזמן אמת • מי יזכה בתהילת עולם? • מבזק: התוצאות זורמות • הטבלה מתעדכנת בזמן אמת</span></div></div>
+<main>
   <h1>לוח התוצאות</h1>
-  <p>הטבלה מתעדכנת מעצמה במהלך הערב.</p>
-</header>
-<main class="wrap">
-  <h2 class="part">הטבלה</h2>
-  <p class="part-note" id="resolved">טוען…</p>
+  <p class="sub">הימורי מדגם 2026</p>
+  <div class="admin" id="login" hidden>
+    <b>מצב עריכה</b>
+    <input id="pin" type="password" placeholder="סיסמה" autocomplete="current-password"><button id="go">כניסה</button>
+    <div class="err" id="loginerr" role="status"></div>
+  </div>
+  <div class="banner" id="banner" hidden>מצב עריכה: לחצו על התשובה הנכונה. לחיצה נוספת מבטלת.</div>
+  <h2>הטבלה</h2>
   <ol class="board" id="board"></ol>
+  <p class="status" id="resolved"></p>
   <p class="status" id="status"></p>
-  <h2 class="part">השאלות</h2>
-  <p class="part-note">התשובה הנכונה מסומנת בכחול. המספר ליד כל תשובה הוא כמה משתתפים ניחשו אותה.</p>
+  <h2>השאלות</h2>
   <div id="questions"></div>
 </main>
 <script>
@@ -108,8 +110,14 @@ const QS = [
   {e:107573084, t:"בסקר האחרון של 12 הליכוד קיבלו 20. כמה הם יקבלו במדגם?", o:["מתחת ל-20","20-22","23-24","25+"]}
 ];
 QS.forEach(q=>{q.o=q.o.map(o=>typeof o==="string"?o:o.v);});
+const LOG_URL="https://docs.google.com/forms/d/e/1FAIpQLSe9w7TEMUUB8vGMvFLhSIfpvFsN5KcNzr9C1DLiKtYecla6vg/formResponse";
+const LOG_ENTRY="entry.1120294965";
+const LOG_GID="1074118146";
+const ADMIN_H="cfe99d395a01a96412f9f578e5921f48d141950ea7091d90172e170322152729";
 const $=id=>document.getElementById(id);
-let people=[], correct={};
+let people=[], correct={}, token=null, pending={};
+const isAdmin=location.hash==="#admin";
+async function sha(s){const b=await crypto.subtle.digest("SHA-256",new TextEncoder().encode(s));return [...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,"0")).join("");}
 function gviz(gid){return "https://docs.google.com/spreadsheets/d/"+SHEET_ID+"/gviz/tq?tqx=out:csv&headers=0&gid="+gid+"&t="+Date.now();}
 function parseCSV(text){
   const rows=[];let row=[],cell="",q=false;
@@ -125,9 +133,11 @@ function parseCSV(text){
   return rows;
 }
 const norm=s=>String(s).trim().replace(/[–—]/g,"-");
+const okTokens={};
+async function validToken(t){ if(!(t in okTokens)) okTokens[t]=(await sha(t))===ADMIN_H; return okTokens[t]; }
 async function load(){
   try{
-    const [d,k]=await Promise.all([fetch(gviz(DATA_GID)).then(r=>r.text()),fetch(gviz(KEY_GID)).then(r=>r.text())]);
+    const [d,k,l]=await Promise.all([gviz(DATA_GID),gviz(KEY_GID),gviz(LOG_GID)].map(u=>fetch(u).then(r=>r.text())));
     const byName=new Map();
     parseCSV(d).forEach(r=>{
       const line=(r[0]||"").trim(); if(!line) return;
@@ -136,16 +146,20 @@ async function load(){
       byName.set(name.toLowerCase(),{name,a:parts.slice(1,QS.length+1).map(norm)});
     });
     people=[...byName.values()];
-    correct={};
+    const c={};
     const krows=parseCSV(k);
-    let start=krows.findIndex(r=>norm(r[0]||"")==="שאלה"); start = start===-1?0:start+1;
-    QS.forEach((q,i)=>{
-      const r=krows[start+i]; if(!r) return;
-      const v=parseInt(norm(r[1]||""),10);
-      if(v>=1&&v<=q.o.length) correct[i]=q.o[v-1];
-    });
-    render();
-    $("status").textContent="עודכן ב־"+new Date().toLocaleTimeString("he-IL",{hour:"2-digit",minute:"2-digit"});
+    let start=krows.findIndex(r=>norm(r[0]||"")==="שאלה"); start=start===-1?0:start+1;
+    QS.forEach((q,i)=>{const r=krows[start+i]; if(!r) return; const v=parseInt(norm(r[1]||""),10); if(v>=1&&v<=q.o.length) c[i]=q.o[v-1];});
+    for(const r of parseCSV(l)){
+      const p=(r[1]||"").trim().split("|"); if(p.length!==3) continue;
+      const qi=parseInt(p[0],10)-1, ai=parseInt(p[1],10);
+      if(!(qi>=0&&qi<QS.length)) continue;
+      if(!(await validToken(p[2]))) continue;
+      if(ai===0) delete c[qi]; else if(ai>=1&&ai<=QS[qi].o.length) c[qi]=QS[qi].o[ai-1];
+    }
+    Object.keys(pending).forEach(qi=>{ const want=pending[qi]; if((c[qi]||"")===want) delete pending[qi]; else { if(want) c[qi]=want; else delete c[qi]; } });
+    correct=c; render();
+    $("status").textContent="עודכן ב־"+new Date().toLocaleTimeString("he-IL",{hour:"2-digit",minute:"2-digit",second:"2-digit"});
   }catch(e){ $("status").textContent="לא הצלחתי לטעון את הנתונים. מנסה שוב בעוד רגע…"; }
 }
 function render(){
@@ -156,11 +170,13 @@ function render(){
   if(!rows.length){const li=document.createElement("li");li.className="empty";li.textContent="עוד אין משתתפים.";b.appendChild(li);}
   else{
     const top=rows[0].s;let rank=0,prev=null;
+    const allDone=ids.length===QS.length;
     rows.forEach((r,i)=>{
       if(r.s!==prev){rank=i+1;prev=r.s;}
-      const li=document.createElement("li");if(ids.length&&r.s===top)li.className="lead";
+      const li=document.createElement("li");const lead=ids.length&&r.s===top;if(lead)li.className="lead";
       const rk=document.createElement("span");rk.className="rk";rk.textContent=rank;
       const nm=document.createElement("span");nm.className="nm";nm.textContent=r.name;
+      if(lead){const cr=document.createElement("span");cr.className="crown";cr.textContent=allDone?"ניצח/ה!":"מוביל/ה";nm.appendChild(cr);}
       const bar=document.createElement("span");bar.className="sbar";const f=document.createElement("i");f.style.width=(ids.length?r.s/ids.length*100:0)+"%";bar.appendChild(f);
       const sc=document.createElement("span");sc.className="sc";sc.textContent=r.s+(ids.length?"/"+ids.length:"");
       li.append(rk,nm,bar,sc);b.appendChild(li);
@@ -171,15 +187,39 @@ function render(){
     const card=document.createElement("div");card.className="q"+(correct[i]!==undefined?" done":"");
     const h3=document.createElement("h3");h3.textContent=(i+1)+". "+q.t;card.appendChild(h3);
     const opts=document.createElement("div");opts.className="opts";
-    q.o.forEach(o=>{
-      const s=document.createElement("span");s.className="opt"+(correct[i]===o?" right":"");
-      s.textContent=o;const c=document.createElement("small");c.textContent=" "+people.filter(p=>p.a[i]===norm(o)).length;s.appendChild(c);
-      opts.appendChild(s);
+    q.o.forEach((o,k)=>{
+      const s=document.createElement(token?"button":"span");s.className="opt"+(correct[i]===o?" right":"");
+      if(token){s.type="button";s.setAttribute("aria-pressed",correct[i]===o?"true":"false");s.addEventListener("click",()=>setAnswer(i,correct[i]===o?0:k+1,s));}
+      const t=document.createElement("span");t.textContent=o;
+      const c=document.createElement("small");c.textContent=people.filter(p=>p.a[i]===norm(o)).length;
+      s.append(t,c);opts.appendChild(s);
     });
     card.appendChild(opts);root.appendChild(card);
   });
 }
-render();load();setInterval(load,30000);
+async function setAnswer(qi,ai,btn){
+  btn.classList.add("busy");
+  const want=ai?QS[qi].o[ai-1]:"";
+  pending[qi]=want;
+  if(want) correct[qi]=want; else delete correct[qi];
+  render();
+  const body=new URLSearchParams();body.append(LOG_ENTRY,(qi+1)+"|"+ai+"|"+token);
+  try{await fetch(LOG_URL,{method:"POST",mode:"no-cors",body});}
+  catch(e){$("status").textContent="השמירה נכשלה. בדקו את החיבור ונסו שוב.";delete pending[qi];load();}
+}
+async function login(pin){
+  const t=await sha(pin.trim());
+  if((await sha(t))!==ADMIN_H) return false;
+  token=t; try{localStorage.setItem("md26-admin",pin.trim());}catch(e){}
+  $("login").hidden=true;$("banner").hidden=false;render();return true;
+}
+if(isAdmin){
+  $("login").hidden=false;
+  $("go").addEventListener("click",async()=>{ if(!(await login($("pin").value))){$("loginerr").textContent="סיסמה שגויה.";} });
+  $("pin").addEventListener("keydown",e=>{if(e.key==="Enter")$("go").click();});
+  try{const saved=localStorage.getItem("md26-admin"); if(saved) login(saved);}catch(e){}
+}
+render();load();setInterval(load,isAdmin?8000:20000);
 </script>
 </body>
 </html>
